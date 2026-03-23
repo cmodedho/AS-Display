@@ -1,0 +1,12 @@
+.logo.wordmark {
+    font-family: 'Roboto', sans-serif;
+    font-size: 116px;
+    font-weight: black;
+    line-height: 100%;
+}
+
+.wordmark.span {
+    color: var(--primary-bg);
+    background-color: var(--primary-accent);
+    padding: 0px 6px;
+}
