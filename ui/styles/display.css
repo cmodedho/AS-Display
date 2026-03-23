@@ -10,3 +10,393 @@
     background-color: var(--primary-accent);
     padding: 0px 6px;
 }
+
+.scene.scene-1 {
+    --scene-1-enter-ms: 333ms;
+}
+
+.scene.scene-1 .logo.content-wrapper {
+    position: relative;
+    transform-origin: center;
+    will-change: transform, opacity, filter;
+}
+
+.scene.scene-1 .logo.content,
+.scene.scene-1 .logo.wordmark {
+    will-change: transform, filter, opacity;
+}
+
+.scene.scene-1 .logo.content-wrapper::before,
+.scene.scene-1 .logo.content-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.scene.scene-1 .logo.content-wrapper::before {
+    background: url("/assets/graphic/Paper Overlay 3.png") center / cover no-repeat;
+    mix-blend-mode: multiply;
+}
+
+.scene.scene-1 .logo.content-wrapper::after {
+    background: repeating-linear-gradient(0deg,
+            rgba(255, 255, 255, 0) 0 7px,
+            rgba(246, 240, 224, 0.6) 7px 11px);
+    mix-blend-mode: screen;
+}
+
+.scene.scene-1.is-entering .logo.content-wrapper {
+    animation: scene1-logo-glitch-in var(--scene-1-enter-ms) steps(8, end) both;
+}
+
+.scene.scene-1.is-entering .logo.content {
+    animation: scene1-rgb-jitter var(--scene-1-enter-ms) steps(8, end) both;
+}
+
+.scene.scene-1.is-entering .logo.wordmark {
+    animation: scene1-wordmark-jitter var(--scene-1-enter-ms) steps(8, end) both;
+}
+
+.scene.scene-1.is-entering .logo.content-wrapper::before {
+    animation: scene1-paper-wipe var(--scene-1-enter-ms) ease-out both;
+}
+
+.scene.scene-1.is-entering .logo.content-wrapper::after {
+    animation: scene1-scanlines var(--scene-1-enter-ms) linear both;
+}
+
+@keyframes scene1-logo-glitch-in {
+    0% {
+        opacity: 0;
+        transform: translate(-28px, 10px) scale(1.18) skewX(-6deg);
+        filter: blur(6px) contrast(1.5);
+        clip-path: inset(38% 0 22% 0);
+    }
+
+    16% {
+        opacity: 0.72;
+        transform: translate(18px, -4px) scale(1.12) skewX(5deg);
+        clip-path: inset(0 0 58% 0);
+    }
+
+    32% {
+        opacity: 0.55;
+        transform: translate(-12px, 6px) scale(1.08) skewX(-3deg);
+        clip-path: inset(52% 0 0 0);
+    }
+
+    52% {
+        opacity: 0.92;
+        transform: translate(7px, -2px) scale(1.03) skewX(2deg);
+        filter: blur(2px) contrast(1.2);
+        clip-path: inset(13% 0 31% 0);
+    }
+
+    72% {
+        opacity: 0.97;
+        transform: translate(-2px, 1px) scale(1.01);
+        filter: blur(0.8px) contrast(1.05);
+        clip-path: inset(0 0 0 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) skewX(0);
+        filter: blur(0) contrast(1);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes scene1-rgb-jitter {
+    0%,
+    100% {
+        transform: translate(0, 0);
+        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    }
+
+    24% {
+        transform: translate(-4px, 1px);
+        filter: drop-shadow(4px 0 0 rgba(255, 83, 83, 0.45));
+    }
+
+    52% {
+        transform: translate(3px, -1px);
+        filter: drop-shadow(-4px 0 0 rgba(66, 165, 245, 0.5));
+    }
+
+    78% {
+        transform: translate(-2px, 0);
+        filter: drop-shadow(3px 0 0 rgba(255, 211, 61, 0.4));
+    }
+}
+
+@keyframes scene1-wordmark-jitter {
+    0%,
+    100% {
+        transform: translate(0, 0);
+        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    }
+
+    22% {
+        transform: translate(5px, 1px);
+        filter: drop-shadow(-4px 0 0 rgba(255, 70, 70, 0.4));
+    }
+
+    47% {
+        transform: translate(-3px, -1px);
+        filter: drop-shadow(4px 0 0 rgba(80, 180, 255, 0.45));
+    }
+
+    74% {
+        transform: translate(2px, 0);
+        filter: drop-shadow(-3px 0 0 rgba(255, 223, 80, 0.35));
+    }
+}
+
+@keyframes scene1-paper-wipe {
+    0% {
+        opacity: 0.9;
+        transform: translateX(-10%) scale(1.06) rotate(-2deg);
+    }
+
+    55% {
+        opacity: 0.35;
+        transform: translateX(3%) scale(1.01) rotate(0.5deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(9%) scale(0.98) rotate(1.8deg);
+    }
+}
+
+@keyframes scene1-scanlines {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.9;
+    }
+
+    30% {
+        opacity: 0.25;
+    }
+
+    55% {
+        opacity: 0.6;
+    }
+
+    75% {
+        opacity: 0.18;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.instagram {
+    font-family: 'Roboto', sans-serif;
+    font-size: 96px;
+    font-weight: bold;
+    line-height: 100%;
+    color: var(--primary-bg);
+}
+
+.instagram.span {
+    background: linear-gradient(45deg, #f58529 0%, #dd2a7b 50%, #8134af 75%, #515bd4 100%);
+    padding: 0px 3px;
+}
+
+.ig.subtext {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.ig.content-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    position: relative;
+    isolation: isolate;
+}
+
+.handle.content {
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 24px;
+
+    padding: 6px 24px;
+
+    background-color: var(--primary-accent);
+    border-radius: 999px;
+}
+
+.scene.scene-2 {
+    --scene-2-enter-ms: 950ms;
+}
+
+.scene.scene-2 .ig.content-1 {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    transform: translateX(-10px) scale(1.02);
+    will-change: clip-path, opacity, transform;
+}
+
+.scene.scene-2 .ig.content-1::before,
+.scene.scene-2 .ig.content-1::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.scene.scene-2 .ig.content-1::before {
+    inset: -22px -140px;
+    background: radial-gradient(140px 140px at 8% 50%,
+            rgba(255, 170, 67, 0.95) 0%,
+            rgba(255, 108, 24, 0.82) 28%,
+            rgba(84, 35, 14, 0.88) 50%,
+            rgba(28, 10, 5, 0.72) 62%,
+            rgba(0, 0, 0, 0) 73%);
+    filter: blur(8px);
+    mix-blend-mode: multiply;
+    opacity: 0;
+}
+
+.scene.scene-2 .ig.content-1::after {
+    inset: -8px -42px;
+    border-right: 2px solid rgba(255, 191, 118, 0.8);
+    box-shadow: 0 0 16px rgba(255, 124, 44, 0.5);
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.scene.scene-2 .ig.subtext,
+.scene.scene-2 .instagram,
+.scene.scene-2 .handle.content {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.scene.scene-2.is-entering .ig.content-1 {
+    animation: scene2-burn-reveal var(--scene-2-enter-ms) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.scene.scene-2.is-entering .ig.content-1::before {
+    animation: scene2-burn-front var(--scene-2-enter-ms) cubic-bezier(0.2, 0.78, 0.26, 1) both;
+}
+
+.scene.scene-2.is-entering .ig.content-1::after {
+    animation: scene2-burn-edge var(--scene-2-enter-ms) linear both;
+}
+
+.scene.scene-2.is-entering .ig.subtext {
+    animation: scene2-text-rise 420ms ease-out 200ms both;
+}
+
+.scene.scene-2.is-entering .instagram {
+    animation: scene2-text-rise 520ms ease-out 290ms both;
+}
+
+.scene.scene-2.is-entering .handle.content {
+    animation: scene2-text-rise 500ms ease-out 420ms both;
+}
+
+.scene.scene-2.is-entered .ig.content-1 {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.scene.scene-2.is-entered .ig.subtext,
+.scene.scene-2.is-entered .instagram,
+.scene.scene-2.is-entered .handle.content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes scene2-burn-reveal {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0.1;
+        transform: translateX(-16px) scale(1.03);
+        filter: blur(2px);
+    }
+
+    38% {
+        clip-path: inset(0 68% 0 0);
+        opacity: 0.55;
+    }
+
+    64% {
+        clip-path: inset(0 36% 0 0);
+        opacity: 0.88;
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes scene2-burn-front {
+    0% {
+        transform: translateX(-58%);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.95;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(54%);
+        opacity: 0;
+    }
+}
+
+@keyframes scene2-burn-edge {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    18% {
+        opacity: 0.85;
+    }
+
+    80% {
+        opacity: 0.55;
+    }
+
+    100% {
+        transform: translateX(105%);
+        opacity: 0;
+    }
+}
+
+@keyframes scene2-text-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+        filter: blur(2px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
